@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conceitos Fundamentais - Escola de Frankfurt</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8B1F1F;
+            --secondary: #2C2C2C;
+            --accent: #D4A373;
+            --light: #F5F5F5;
+            --text: #1A1A1A;
+            --border: #E0E0E0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: linear-gradient(135deg, #fdfbfb 0%, #f5f5f5 100%);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, #6B1515 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(139, 31, 31, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 15s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-10%, -10%) scale(1.1); }
+        }
+
+        .header h1 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .intro {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            margin-bottom: 3rem;
+            border-left: 6px solid var(--primary);
+        }
+
+        .intro h2 {
+            font-family: 'Crimson Pro', serif;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .intro p {
+            font-size: 1.05rem;
+            color: var(--secondary);
+            line-height: 1.8;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--accent);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .concept-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 163, 115, 0.05) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 32px rgba(139, 31, 31, 0.15);
+        }
+
+        .concept-card:hover::before {
+            opacity: 1;
+        }
+
+        .concept-header {
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .concept-name {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .concept-author {
+            font-size: 0.95rem;
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .concept-body {
+            position: relative;
+            z-index: 1;
+        }
+
+        .concept-definition {
+            font-size: 1rem;
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        .questions-section {
+            background: linear-gradient(135deg, var(--secondary) 0%, #1A1A1A 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            margin-top: 4rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+
+        .questions-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .question-item {
+            background: rgba(255,255,255,0.05);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .question-item:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateX(8px);
+        }
+
+        .question-number {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .question-text {
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(139, 31, 31, 0.3);
+        }
+
+        .back-link:hover {
+            background: #6B1515;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 31, 31, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header p {
+                font-size: 1rem;
+            }
+
+            .concept-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Conceitos Fundamentais</h1>
+        <p>Escola de Frankfurt - Teoria Crítica da Sociedade</p>
+    </div>
+
+    <div class="container">
+        <div class="intro">
+            <h2>Contexto Histórico e a Teoria Crítica</h2>
+            <p>A Escola de Frankfurt surge no Instituto de Pesquisas Sociais (Alemanha, 1923). Seu foco era entender por que a revolução socialista não aconteceu na Europa e como o capitalismo desenvolveu novas formas de dominação através da cultura.</p>
+        </div>
+
+        <!-- Seção 1: Fundamentos Teóricos -->
+        <div class="section">
+            <h2 class="section-title">1. Fundamentos Teóricos</h2>
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <div class="concept-header">
+                        <h3 class="concept-name">Teoria Crítica</h3>
+                        <p class="concept-author">Max Horkheimer</p>
+                    </div>
+                    <div class="concept-body">
+                        <p class="concept-definition">Diferente da teoria tradicional (que apenas descreve), a teoria crítica busca emancipar o ser humano e denunciar as estruturas de poder.</p>
+                    </div>
+                </div>
+
+                <div class="concept-card">
+                    <div class="concept-header">
+                        <h3 class="concept-name">Razão Instrumental</h3>
+                        <p class="concept-author">Horkheimer & Adorno</p>
+                    </div>
+                    <div class="concept-body">
+                        <p class="concept-definition">É a inteligência voltada para a técnica e o controle. No nazismo (como visto no documentário), a razão foi usada para organizar o extermínio de forma "eficiente".</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção 2: Indústria Cultural -->
+        <div class="section">
+            <h2 class="section-title">2. A Indústria Cultural</h2>
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <div class="concept-header">
+                        <h3 class="concept-name">Indústria Cultural</h3>
+                        <p class="concept-author">Adorno & Horkheimer</p>
+                    </div>
+                    <div class="concept-body">
+                        <p class="concept-definition">A cultura (cinema, música, TV) passa a ser produzida como mercadoria. O objetivo não é a arte, mas o lucro e a passividade do público.</p>
+                    </div>
+                </div>
+
+                <div class="concept-card">
+                    <div class="concept-header">
+                        <h3 class="concept-name">Pseudo-individualização</h3>
+                        <p class="concept-author">Theodor Adorno</p>
+                    </div>
+                    <div class="concept-body">
+                        <p class="concept-definition">O mercado oferece pequenas variações (ex: cores de iPhone) para dar a ilusão de escolha, enquanto todos consomem o mesmo padrão.</p>
+                    </div>
+                </div>
+
+                <div class="concept-card">
+                    <div class="concept-header">
+                        <h3 class="concept-name">Homem Unidimensional</h3>
+                        <p class="concept-author">Herbert Marcuse</p>
+                    </div>
+                    <div class="concept-body">
+                        <p class="concept-definition">O indivíduo que perdeu a capacidade de criticar o sistema porque todas as suas necessidades (mesmo as falsas) são satisfeitas pelo consumo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção 3: Arte e Resistência -->
+        <div class="section">
+            <h2 class="section-title">3. Arte e Resistência</h2>
+            <p style="margin-bottom: 1.5rem; font-size: 1.05rem; color: var(--secondary);">Nem todos os autores eram tão pessimistas quanto Adorno. Walter Benjamin via potencial na tecnologia.</p>
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <div class="concept-header">
+                        <h3 class="concept-name">Aura</h3>
+                        <p class="concept-author">Walter Benjamin</p>
+                    </div>
+                    <div class="concept-body">
+                        <p class="concept-definition">É o caráter único e sagrado da obra de arte tradicional. Com a cópia (foto/cinema), a "aura" se perde.</p>
+                    </div>
+                </div>
+
+                <div class="concept-card">
+                    <div class="concept-header">
+                        <h3 class="concept-name">Reprodutibilidade Técnica</h3>
+                        <p class="concept-author">Walter Benjamin</p>
+                    </div>
+                    <div class="concept-body">
+                        <p class="concept-definition">A capacidade de reproduzir a arte em massa. Se por um lado perde a "aura", por outro permite a democratização do acesso à cultura.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Perguntas para Debate -->
+        <div class="questions-section">
+            <h2 class="questions-title">Perguntas para Debate (3h de Aula)</h2>
+            
+            <div class="question-item">
+                <div class="question-number">1. Conexão Visual</div>
+                <div class="question-text">Como o documentário "A Arquitetura da Destruição" exemplifica o uso da "Razão Instrumental" na estética nazista?</div>
+            </div>
+
+            <div class="question-item">
+                <div class="question-number">2. Atualidade</div>
+                <div class="question-text">Podemos considerar os algoritmos das redes sociais como a "Indústria Cultural 2.0"? Onde fica a nossa liberdade de escolha?</div>
+            </div>
+
+            <div class="question-item">
+                <div class="question-number">3. Consumo</div>
+                <div class="question-text">A busca por "ser diferente" através de marcas de roupa é uma escolha real ou uma "Pseudo-individualização"?</div>
+            </div>
+
+            <a href="index.html" class="back-link">← Voltar para a página principal</a>
+        </div>
+    </div>
+
+    <script>
+        // Animação de entrada dos cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.concept-card').forEach((card) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
